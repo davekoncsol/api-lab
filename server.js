@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var moviesRouter = require('./routes/movies');
 var reviewsRouter = require('./routes/reviews');
 var performersRouter = require('./routes/performers');
+var apiRouter = require('./routes/api');
 
 var app = express();
 
@@ -16,16 +17,20 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use('/', indexRouter);
 app.use('/movies', moviesRouter);
 app.use('/', reviewsRouter);
 app.use('/', performersRouter);
+app.use('/api', apiRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
